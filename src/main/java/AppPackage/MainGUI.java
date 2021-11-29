@@ -35,7 +35,6 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         DesktopPane = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         yesfield = new javax.swing.JTextField();
         kitButton = new javax.swing.JButton();
         keySwitchButton = new javax.swing.JButton();
@@ -83,11 +82,9 @@ public class MainGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Keyboard Configurator");
+        setMaximumSize(new java.awt.Dimension(2147483647, 2100000000));
         setResizable(false);
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("wow epic application");
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         yesfield.setText("enter here");
         yesfield.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +241,6 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGap(394, 394, 394))))
         );
 
-        DesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(yesfield, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(kitButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         DesktopPane.setLayer(keySwitchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -276,23 +272,20 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(323, 323, 323))
                     .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(chartButton)
                         .addGap(26, 26, 26))))
             .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DesktopPaneLayout.createSequentialGroup()
                     .addGap(248, 248, 248)
                     .addComponent(yesfield, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
+                    .addContainerGap(839, Short.MAX_VALUE)))
         );
         DesktopPaneLayout.setVerticalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chartButton))
+                .addGap(34, 34, 34)
+                .addComponent(chartButton)
                 .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DesktopPaneLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -308,30 +301,15 @@ public class MainGUI extends javax.swing.JFrame {
                     .addGroup(DesktopPaneLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(643, Short.MAX_VALUE))
             .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DesktopPaneLayout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addComponent(yesfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(437, Short.MAX_VALUE)))
+                    .addContainerGap(1411, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(395, Short.MAX_VALUE))
-        );
+        getContentPane().add(DesktopPane, "card2");
 
         pack();
         setLocationRelativeTo(null);
@@ -339,32 +317,32 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void kitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kitButtonActionPerformed
         // TODO add your handling code here: open kit window for options 
+//        
         kitFrame.setVisible(true);
-        
     }//GEN-LAST:event_kitButtonActionPerformed
+
+    private void yesfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yesfieldActionPerformed
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loadButtonActionPerformed
 
-    private void keySwitchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keySwitchButtonActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        keyswitchButton.setVisible(true);
-        
-    }//GEN-LAST:event_keySwitchButtonActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     private void keycapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keycapButtonActionPerformed
         // TODO add your handling code here:
         keySwitchButton.setVisible(true);
     }//GEN-LAST:event_keycapButtonActionPerformed
 
-    private void yesfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesfieldActionPerformed
+    private void keySwitchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keySwitchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_yesfieldActionPerformed
+        keyswitchButton.setVisible(true);
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }//GEN-LAST:event_keySwitchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,13 +384,14 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JDesktopPane DesktopPane;
     private javax.swing.JButton chartButton;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JButton keySwitchButton;
     private javax.swing.JButton keycapButton;
