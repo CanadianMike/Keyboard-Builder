@@ -5,6 +5,7 @@
  */
 package AppPackage;
 
+import java.awt.Color;
 import java.awt.Container;
 
 
@@ -35,22 +36,26 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         DesktopPane = new javax.swing.JDesktopPane();
-        yesfield = new javax.swing.JTextField();
-        kitButton = new javax.swing.JButton();
-        keySwitchButton = new javax.swing.JButton();
-        keycapButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        loadButton = new javax.swing.JButton();
-        chartButton = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        keyswitchButton = new javax.swing.JInternalFrame();
+        MenuPanel = new javax.swing.JPanel();
+        layoutTab = new javax.swing.JPanel();
+        LayoutLabel = new javax.swing.JLabel();
+        keyswitchTab = new javax.swing.JPanel();
+        keyswitchLabel = new javax.swing.JLabel();
+        keycapsTab = new javax.swing.JPanel();
+        keycapsLabel = new javax.swing.JLabel();
+        saveTab = new javax.swing.JPanel();
+        saveLabel = new javax.swing.JLabel();
+        MainDisplayPanel = new javax.swing.JPanel();
+        defaultPanel = new javax.swing.JPanel();
+        layoutPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        option1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        kitFrame = new javax.swing.JInternalFrame();
+        keycapsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        keyswitchPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        keycapFrame = new javax.swing.JInternalFrame();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         jLabel6.setText("choose this iption or die");
 
@@ -86,227 +91,303 @@ public class MainGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        yesfield.setText("enter here");
-        yesfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yesfieldActionPerformed(evt);
+        MenuPanel.setBackground(new java.awt.Color(255, 51, 102));
+
+        layoutTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                layoutTabMouseClicked(evt);
             }
         });
 
-        kitButton.setText("Kit ");
-        kitButton.setBorder(null);
-        kitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kitButtonActionPerformed(evt);
+        LayoutLabel.setText("Layout");
+
+        javax.swing.GroupLayout layoutTabLayout = new javax.swing.GroupLayout(layoutTab);
+        layoutTab.setLayout(layoutTabLayout);
+        layoutTabLayout.setHorizontalGroup(
+            layoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layoutTabLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(LayoutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
+        layoutTabLayout.setVerticalGroup(
+            layoutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layoutTabLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(LayoutLabel)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        keyswitchTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keyswitchTabMouseClicked(evt);
             }
         });
 
-        keySwitchButton.setText("Key Switch");
-        keySwitchButton.setBorder(null);
-        keySwitchButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keySwitchButtonActionPerformed(evt);
+        keyswitchLabel.setText("Key Switches");
+
+        javax.swing.GroupLayout keyswitchTabLayout = new javax.swing.GroupLayout(keyswitchTab);
+        keyswitchTab.setLayout(keyswitchTabLayout);
+        keyswitchTabLayout.setHorizontalGroup(
+            keyswitchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keyswitchTabLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(keyswitchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        keyswitchTabLayout.setVerticalGroup(
+            keyswitchTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keyswitchTabLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(keyswitchLabel)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        keycapsTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keycapsTabMouseClicked(evt);
             }
         });
 
-        keycapButton.setText("Key Cap");
-        keycapButton.setBorder(null);
-        keycapButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keycapButtonActionPerformed(evt);
+        keycapsLabel.setText("Key Caps");
+
+        javax.swing.GroupLayout keycapsTabLayout = new javax.swing.GroupLayout(keycapsTab);
+        keycapsTab.setLayout(keycapsTabLayout);
+        keycapsTabLayout.setHorizontalGroup(
+            keycapsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keycapsTabLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(keycapsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        keycapsTabLayout.setVerticalGroup(
+            keycapsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(keycapsTabLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(keycapsLabel)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        saveTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveTabMouseClicked(evt);
             }
         });
 
-        saveButton.setText("Save Configuration");
-        saveButton.setBorder(null);
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+        saveLabel.setText("Save");
+        saveLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveLabelMouseClicked(evt);
             }
         });
 
-        loadButton.setText("Load Configuration");
-        loadButton.setBorder(null);
-        loadButton.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout saveTabLayout = new javax.swing.GroupLayout(saveTab);
+        saveTab.setLayout(saveTabLayout);
+        saveTabLayout.setHorizontalGroup(
+            saveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saveTabLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(saveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        saveTabLayout.setVerticalGroup(
+            saveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saveTabLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(saveLabel)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
+        MenuPanel.setLayout(MenuPanelLayout);
+        MenuPanelLayout.setHorizontalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(keycapsTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(keyswitchTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(layoutTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(saveTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        MenuPanelLayout.setVerticalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuPanelLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(layoutTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(keyswitchTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(keycapsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        MainDisplayPanel.setLayout(new javax.swing.OverlayLayout(MainDisplayPanel));
+
+        defaultPanel.setBackground(new java.awt.Color(255, 102, 102));
+        defaultPanel.setPreferredSize(new java.awt.Dimension(793, 560));
+
+        javax.swing.GroupLayout defaultPanelLayout = new javax.swing.GroupLayout(defaultPanel);
+        defaultPanel.setLayout(defaultPanelLayout);
+        defaultPanelLayout.setHorizontalGroup(
+            defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+        defaultPanelLayout.setVerticalGroup(
+            defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+
+        MainDisplayPanel.add(defaultPanel);
+
+        layoutPanel.setBackground(new java.awt.Color(51, 255, 255));
+        layoutPanel.setPreferredSize(new java.awt.Dimension(793, 560));
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("layout panel");
+
+        option1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        option1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadButtonActionPerformed(evt);
+                option1ActionPerformed(evt);
             }
         });
 
-        chartButton.setText("Cart");
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel5.setText("jLabel5");
 
-        keyswitchButton.setPreferredSize(new java.awt.Dimension(513, 390));
-        keyswitchButton.setVisible(false);
-
-        jLabel5.setText("keyswitch");
-
-        javax.swing.GroupLayout keyswitchButtonLayout = new javax.swing.GroupLayout(keyswitchButton.getContentPane());
-        keyswitchButton.getContentPane().setLayout(keyswitchButtonLayout);
-        keyswitchButtonLayout.setHorizontalGroup(
-            keyswitchButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        keyswitchButtonLayout.setVerticalGroup(
-            keyswitchButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5)
-        );
-
-        kitFrame.setVisible(true);
-
-        jLabel2.setText("60%");
-
-        jLabel3.setText("80%");
-
-        jLabel4.setText("100%");
-
-        javax.swing.GroupLayout kitFrameLayout = new javax.swing.GroupLayout(kitFrame.getContentPane());
-        kitFrame.getContentPane().setLayout(kitFrameLayout);
-        kitFrameLayout.setHorizontalGroup(
-            kitFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kitFrameLayout.createSequentialGroup()
-                .addGroup(kitFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(323, 323, 323))
-        );
-        kitFrameLayout.setVerticalGroup(
-            kitFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kitFrameLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel4))
-        );
-
-        keycapFrame.setVisible(false);
-
-        javax.swing.GroupLayout keycapFrameLayout = new javax.swing.GroupLayout(keycapFrame.getContentPane());
-        keycapFrame.getContentPane().setLayout(keycapFrameLayout);
-        keycapFrameLayout.setHorizontalGroup(
-            keycapFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        keycapFrameLayout.setVerticalGroup(
-            keycapFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 67, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-        );
-
-        jLayeredPane1.setLayer(keyswitchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(kitFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(keycapFrame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kitFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(keycapFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(keyswitchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(keyswitchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(kitFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(keycapFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(394, 394, 394))))
+                .addComponent(jLabel5)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        DesktopPane.setLayer(yesfield, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(kitButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(keySwitchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(keycapButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(saveButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(loadButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(chartButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        DesktopPane.setLayer(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout layoutPanelLayout = new javax.swing.GroupLayout(layoutPanel);
+        layoutPanel.setLayout(layoutPanelLayout);
+        layoutPanelLayout.setHorizontalGroup(
+            layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layoutPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(option1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(391, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layoutPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(104, 104, 104))
+        );
+        layoutPanelLayout.setVerticalGroup(
+            layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layoutPanelLayout.createSequentialGroup()
+                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(option1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)))
+                .addGap(219, 219, 219)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
+        );
+
+        MainDisplayPanel.add(layoutPanel);
+
+        keycapsPanel.setBackground(new java.awt.Color(204, 255, 204));
+        keycapsPanel.setPreferredSize(new java.awt.Dimension(793, 560));
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("keycapspanel");
+
+        javax.swing.GroupLayout keycapsPanelLayout = new javax.swing.GroupLayout(keycapsPanel);
+        keycapsPanel.setLayout(keycapsPanelLayout);
+        keycapsPanelLayout.setHorizontalGroup(
+            keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+            .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(keycapsPanelLayout.createSequentialGroup()
+                    .addGap(308, 308, 308)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(304, Short.MAX_VALUE)))
+        );
+        keycapsPanelLayout.setVerticalGroup(
+            keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(keycapsPanelLayout.createSequentialGroup()
+                    .addGap(260, 260, 260)
+                    .addComponent(jLabel2)
+                    .addContainerGap(268, Short.MAX_VALUE)))
+        );
+
+        MainDisplayPanel.add(keycapsPanel);
+
+        keyswitchPanel.setPreferredSize(new java.awt.Dimension(793, 560));
+
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel3.setText("keyswitch panel");
+
+        javax.swing.GroupLayout keyswitchPanelLayout = new javax.swing.GroupLayout(keyswitchPanel);
+        keyswitchPanel.setLayout(keyswitchPanelLayout);
+        keyswitchPanelLayout.setHorizontalGroup(
+            keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+            .addGroup(keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(keyswitchPanelLayout.createSequentialGroup()
+                    .addGap(308, 308, 308)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(266, Short.MAX_VALUE)))
+        );
+        keyswitchPanelLayout.setVerticalGroup(
+            keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(keyswitchPanelLayout.createSequentialGroup()
+                    .addGap(258, 258, 258)
+                    .addComponent(jLabel3)
+                    .addContainerGap(270, Short.MAX_VALUE)))
+        );
+
+        MainDisplayPanel.add(keyswitchPanel);
+
+        DesktopPane.setLayer(MenuPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        DesktopPane.setLayer(MainDisplayPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopPaneLayout = new javax.swing.GroupLayout(DesktopPane);
         DesktopPane.setLayout(DesktopPaneLayout);
         DesktopPaneLayout.setHorizontalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DesktopPaneLayout.createSequentialGroup()
-                        .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(kitButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(DesktopPaneLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(keySwitchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(loadButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(keycapButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(saveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(323, 323, 323))
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(chartButton)
-                        .addGap(26, 26, 26))))
-            .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(DesktopPaneLayout.createSequentialGroup()
-                    .addGap(248, 248, 248)
-                    .addComponent(yesfield, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(839, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MainDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         DesktopPaneLayout.setVerticalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DesktopPaneLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(chartButton)
+                .addContainerGap()
                 .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(kitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(keySwitchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(keycapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DesktopPaneLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(643, Short.MAX_VALUE))
-            .addGroup(DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(DesktopPaneLayout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(yesfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1411, Short.MAX_VALUE)))
+                        .addComponent(MainDisplayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         getContentPane().add(DesktopPane, "card2");
@@ -315,34 +396,46 @@ public class MainGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kitButtonActionPerformed
-        // TODO add your handling code here: open kit window for options 
-//        
-        kitFrame.setVisible(true);
-    }//GEN-LAST:event_kitButtonActionPerformed
-
-    private void yesfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesfieldActionPerformed
+    private void layoutTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_layoutTabMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_yesfieldActionPerformed
+        //display layout panel
+        layoutPanel.setVisible(true);
+        keyswitchPanel.setVisible(false);
+        keycapsPanel.setVisible(false);
+        //change current tab colour according to current selection
 
-    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+
+    }//GEN-LAST:event_layoutTabMouseClicked
+
+    private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadButtonActionPerformed
+        //save to file 
+    }//GEN-LAST:event_saveLabelMouseClicked
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void keyswitchTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keyswitchTabMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
+        //display keyswitch panel
+        layoutPanel.setVisible(false);
+        keyswitchPanel.setVisible(true);
+        keycapsPanel.setVisible(false);
+    }//GEN-LAST:event_keyswitchTabMouseClicked
 
-    private void keycapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keycapButtonActionPerformed
+    private void keycapsTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keycapsTabMouseClicked
         // TODO add your handling code here:
-        keySwitchButton.setVisible(true);
-    }//GEN-LAST:event_keycapButtonActionPerformed
+        //display layout panel
+        layoutPanel.setVisible(false);
+        keyswitchPanel.setVisible(false);
+        keycapsPanel.setVisible(true);
+    }//GEN-LAST:event_keycapsTabMouseClicked
 
-    private void keySwitchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keySwitchButtonActionPerformed
+    private void option1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ActionPerformed
         // TODO add your handling code here:
-        keyswitchButton.setVisible(true);
+    }//GEN-LAST:event_option1ActionPerformed
 
-    }//GEN-LAST:event_keySwitchButtonActionPerformed
+    private void saveTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTabMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_saveTabMouseClicked
 
     /**
      * @param args the command line arguments
@@ -382,26 +475,30 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
-    private javax.swing.JButton chartButton;
-    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel LayoutLabel;
+    private javax.swing.JPanel MainDisplayPanel;
+    private javax.swing.JPanel MenuPanel;
+    private javax.swing.JPanel defaultPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JButton keySwitchButton;
-    private javax.swing.JButton keycapButton;
-    private javax.swing.JInternalFrame keycapFrame;
-    private javax.swing.JInternalFrame keyswitchButton;
-    private javax.swing.JButton kitButton;
-    private javax.swing.JInternalFrame kitFrame;
-    private javax.swing.JButton loadButton;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel keycapsLabel;
+    private javax.swing.JPanel keycapsPanel;
+    private javax.swing.JPanel keycapsTab;
+    private javax.swing.JLabel keyswitchLabel;
+    private javax.swing.JPanel keyswitchPanel;
+    private javax.swing.JPanel keyswitchTab;
+    private javax.swing.JPanel layoutPanel;
+    private javax.swing.JPanel layoutTab;
+    private javax.swing.JComboBox<String> option1;
+    private javax.swing.JLabel saveLabel;
+    private javax.swing.JPanel saveTab;
     private javax.swing.JDialog testdiag;
-    private javax.swing.JTextField yesfield;
     // End of variables declaration//GEN-END:variables
 }
