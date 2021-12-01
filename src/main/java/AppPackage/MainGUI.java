@@ -21,6 +21,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() {
         initComponents();
+        defaultPanel.setVisible(true);
         homeTab.setBackground(Color.WHITE);
     }
 
@@ -50,6 +51,8 @@ public class MainGUI extends javax.swing.JFrame {
         saveLabel = new javax.swing.JLabel();
         loadTab = new javax.swing.JPanel();
         loadLabel = new javax.swing.JLabel();
+        cartTab = new javax.swing.JPanel();
+        cartLabel = new javax.swing.JLabel();
         MainDisplayPanel = new javax.swing.JPanel();
         defaultPanel = new javax.swing.JPanel();
         layoutPanel = new javax.swing.JPanel();
@@ -208,28 +211,23 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        saveLabel.setText("Save");
-        saveLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveLabelMouseClicked(evt);
-            }
-        });
+        saveLabel.setText("Save Configuration");
 
         javax.swing.GroupLayout saveTabLayout = new javax.swing.GroupLayout(saveTab);
         saveTab.setLayout(saveTabLayout);
         saveTabLayout.setHorizontalGroup(
             saveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveTabLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(saveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveLabel)
+                .addGap(35, 35, 35))
         );
         saveTabLayout.setVerticalGroup(
             saveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveTabLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveTabLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(saveLabel)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         loadTab.setPreferredSize(new java.awt.Dimension(180, 60));
@@ -253,20 +251,44 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        cartTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cartTabMouseClicked(evt);
+            }
+        });
+
+        cartLabel.setText("Cart");
+
+        javax.swing.GroupLayout cartTabLayout = new javax.swing.GroupLayout(cartTab);
+        cartTab.setLayout(cartTabLayout);
+        cartTabLayout.setHorizontalGroup(
+            cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cartTabLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(cartLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        cartTabLayout.setVerticalGroup(
+            cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cartTabLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(cartLabel)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
         MenuPanel.setLayout(MenuPanelLayout);
         MenuPanelLayout.setHorizontalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(saveTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(MenuPanelLayout.createSequentialGroup()
-                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(keycapsTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(keyswitchTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(layoutTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(homeTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(loadTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(keycapsTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(keyswitchTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(layoutTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(homeTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(cartTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MenuPanelLayout.setVerticalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,6 +301,8 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(keyswitchTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(keycapsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(cartTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -295,11 +319,11 @@ public class MainGUI extends javax.swing.JFrame {
         defaultPanel.setLayout(defaultPanelLayout);
         defaultPanelLayout.setHorizontalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         defaultPanelLayout.setVerticalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
 
         MainDisplayPanel.add(defaultPanel);
@@ -386,6 +410,8 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel3.setText("keyswitch panel");
 
+        jPanel1.setBackground(new java.awt.Color(102, 255, 51));
+
         linearSwitch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         linearSwitch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,7 +444,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(Tactile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Clickly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout keyswitchPanelLayout = new javax.swing.GroupLayout(keyswitchPanel);
@@ -427,23 +453,19 @@ public class MainGUI extends javax.swing.JFrame {
             keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(keyswitchPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(626, Short.MAX_VALUE))
-            .addGroup(keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(keyswitchPanelLayout.createSequentialGroup()
-                    .addGap(308, 308, 308)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(119, 119, 119)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         keyswitchPanelLayout.setVerticalGroup(
             keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(keyswitchPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
-            .addGroup(keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(keyswitchPanelLayout.createSequentialGroup()
-                    .addGap(258, 258, 258)
-                    .addComponent(jLabel3)
-                    .addContainerGap(275, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, keyswitchPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(115, 115, 115))
         );
 
         MainDisplayPanel.add(keyswitchPanel);
@@ -487,6 +509,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
         defaultPanel.setVisible(false);
+//        cartPanel.setVisible(false);
         //change current tab colour according to current selection
         layoutTab.setBackground(Color.white);
         keyswitchTab.setBackground(new Color(128,128,128));
@@ -494,13 +517,9 @@ public class MainGUI extends javax.swing.JFrame {
         saveTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
+        cartTab.setBackground(new Color(128,128,128));
 
     }//GEN-LAST:event_layoutTabMouseClicked
-
-    private void saveLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveLabelMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_saveLabelMouseClicked
 
     private void keyswitchTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keyswitchTabMouseClicked
         // TODO add your handling code here:
@@ -509,6 +528,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(true);
         keycapsPanel.setVisible(false);
         defaultPanel.setVisible(false);
+//        cartTab.setVisible(false);
         //change current tab colour according to current selection
         keyswitchTab.setBackground(Color.white);
         saveTab.setBackground(new Color(128,128,128));
@@ -516,6 +536,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
+        cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_keyswitchTabMouseClicked
 
     private void keycapsTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keycapsTabMouseClicked
@@ -525,6 +546,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(true);
         defaultPanel.setVisible(false);
+//        cartTab.setVisible(false);
         //change current tab colour according to current selection
         keycapsTab.setBackground(Color.white);
         saveTab.setBackground(new Color(128,128,128));
@@ -532,6 +554,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
+        cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_keycapsTabMouseClicked
 
     private void option1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option1ActionPerformed
@@ -546,6 +569,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
+//        cartTab.setVisible(false);
         //save to file 
         //change current tab colour according to current selection
         saveTab.setBackground(Color.white);
@@ -554,6 +578,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
+        cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_saveTabMouseClicked
 
     private void homeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeTabMouseClicked
@@ -563,7 +588,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
-        //save to file 
+//        cartTab.setVisible(false);
         //change current tab colour according to current selection
         homeTab.setBackground(Color.white);
         keyswitchTab.setBackground(new Color(128,128,128));
@@ -571,11 +596,31 @@ public class MainGUI extends javax.swing.JFrame {
         layoutTab.setBackground(new Color(128,128,128));
         saveTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
+        cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_homeTabMouseClicked
 
     private void linearSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linearSwitchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_linearSwitchActionPerformed
+
+    private void cartTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartTabMouseClicked
+        // TODO add your handling code here:
+        //display cart panel
+        cartTab.setVisible(true);
+        defaultPanel.setVisible(false);
+        layoutPanel.setVisible(false);
+        keyswitchPanel.setVisible(false);
+        keycapsPanel.setVisible(false);
+        //save to file 
+        //change current tab colour according to current selection
+        cartTab.setBackground(Color.white);
+        homeTab.setBackground(new Color(128,128,128));
+        keyswitchTab.setBackground(new Color(128,128,128));
+        keycapsTab.setBackground(new Color(128,128,128));
+        layoutTab.setBackground(new Color(128,128,128));
+        saveTab.setBackground(new Color(128,128,128));
+        loadTab.setBackground(new Color(128,128,128));
+    }//GEN-LAST:event_cartTabMouseClicked
 
     /**
      * @param args the command line arguments
@@ -620,6 +665,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel MainDisplayPanel;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JComboBox<String> Tactile;
+    private javax.swing.JLabel cartLabel;
+    private javax.swing.JPanel cartTab;
     private javax.swing.JPanel defaultPanel;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JLabel homeLabel1;
