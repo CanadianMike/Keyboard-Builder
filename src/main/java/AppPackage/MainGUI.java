@@ -17,24 +17,67 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document; 
 import org.jsoup.nodes.Element; 
 import org.jsoup.select.Elements; 
+// imports for list filter
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Hao
  */
 public class MainGUI extends javax.swing.JFrame {
-//    public void WebScraper() throws IOException 
-//    {
-//      //webscrape
-//      Document doc = Jsoup.connect("https://rndkbd.com/").get();  
-//      String title = doc.title();  
-//      System.out.println("title is: " + title);
-//    }        
+    //keycapfilter 
+    DefaultListModel keycapList = new DefaultListModel();
+    private ArrayList getKeycaps ()
+    {
+        ArrayList keycaps = new ArrayList();
+        keycaps.add("red santa");
+        keycaps.add("blue penguin");
+        keycaps.add("green forest");
+        keycaps.add("purplePurfection");
+        return keycaps;
+    }
+    /**
+     * bind data to JList
+     */
+    private void bindData () {
+        getKeycaps().stream().forEach((keycap) -> {
+            keycapList.addElement(keycap);
+        });
+        keycapJList.setModel(keycapList);
+        keycapJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+    
+    /**
+     * search/filter 
+     */
+    private void searchFilter (String searchTerm)
+    {
+        DefaultListModel filteredItems = new DefaultListModel();
+        ArrayList keycaps = getKeycaps();
+        
+        keycaps.stream().forEach((keycap) -> 
+        {
+            String keycapName=keycap.toString().toLowerCase();
+            if (keycapName.contains(searchTerm.toLowerCase()))
+            {
+                filteredItems.addElement(keycap);
+            }
+        });
+        keycapList = filteredItems;
+        keycapJList.setModel(keycapList);
+    }
+    
+    
     /**
      * Creates new form MainGUI
      */
     public MainGUI() throws IOException{
         initComponents();
+        //filtetr list
+        this.bindData();
         defaultPanel.setVisible(true);
         layoutPanel.setVisible(false);
         homeTab.setBackground(Color.WHITE);  
@@ -74,10 +117,9 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         keycapsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        keycapSearch = new javax.swing.JTextField();
-        tf1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        keycapJList = new javax.swing.JList<>();
+        keyCapSearch = new javax.swing.JTextField();
         keyswitchPane = new javax.swing.JDesktopPane();
         keyswitchPanel = new javax.swing.JPanel();
         jLayeredPane3 = new javax.swing.JLayeredPane();
@@ -394,21 +436,24 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("keycapspanel");
 
-        jScrollPane1.setViewportView(jEditorPane1);
-
-        keycapSearch.setText("search");
-        keycapSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keycapSearchActionPerformed(evt);
+        keycapJList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        keycapJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keycapJListMouseClicked(evt);
             }
         });
-        keycapSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                keycapSearchKeyTyped(evt);
+        jScrollPane2.setViewportView(keycapJList);
+
+        keyCapSearch.setText("search keycaps");
+        keyCapSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                keyCapSearchKeyReleased(evt);
             }
         });
-
-        tf1.setText("jTextField1");
 
         javax.swing.GroupLayout keycapsPanelLayout = new javax.swing.GroupLayout(keycapsPanel);
         keycapsPanel.setLayout(keycapsPanelLayout);
@@ -417,31 +462,25 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(keycapsPanelLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(keycapSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, keycapsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
+                .addGap(18, 18, 18)
+                .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(keycapsPanelLayout.createSequentialGroup()
+                        .addComponent(keyCapSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(keycapsPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 394, Short.MAX_VALUE))))
         );
         keycapsPanelLayout.setVerticalGroup(
             keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(keycapsPanelLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(keyCapSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(keycapsPanelLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(keycapsPanelLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(keycapSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         MainDisplayPanel.add(keycapsPanel);
@@ -702,7 +741,7 @@ public class MainGUI extends javax.swing.JFrame {
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
-                .addContainerGap(405, Short.MAX_VALUE)
+                .addContainerGap(587, Short.MAX_VALUE)
                 .addComponent(cartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -955,22 +994,16 @@ public class MainGUI extends javax.swing.JFrame {
         linearTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_clickyTabMouseClicked
 
-    private void keycapSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keycapSearchKeyTyped
+    private void keycapJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keycapJListMouseClicked
         // TODO add your handling code here:
- 
-    }//GEN-LAST:event_keycapSearchKeyTyped
+        //show dialog 
+        JOptionPane.showMessageDialog(rootPane,keycapJList.getSelectedValue(), "Selected keycap", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_keycapJListMouseClicked
 
-    private void keycapSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keycapSearchActionPerformed
+    private void keyCapSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyCapSearchKeyReleased
         // TODO add your handling code here:
-        //take substrings of searched term 
-        String searchTerm = keycapSearch.getText();
-        CharSequence seq = "red";
-        //show corresponding keycaps
-//        boolean bool = seq.contains(searchTerm);
-//        System.out.println("found red? " + bool);
-        
-        
-    }//GEN-LAST:event_keycapSearchActionPerformed
+        searchFilter(keyCapSearch.getText());
+    }//GEN-LAST:event_keyCapSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -982,6 +1015,7 @@ public class MainGUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         
+        //        WebScraper scrape = new WebScraper();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1028,7 +1062,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel homeLabel1;
     private javax.swing.JPanel homeTab;
     private javax.swing.JPanel homeTab1;
-    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1042,9 +1075,10 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTextField keycapSearch;
+    private javax.swing.JTextField keyCapSearch;
+    private javax.swing.JList<String> keycapJList;
     private javax.swing.JLabel keycapsLabel;
     private javax.swing.JPanel keycapsPanel;
     private javax.swing.JPanel keycapsTab;
@@ -1067,6 +1101,5 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel tactilePanel;
     private javax.swing.JPanel tactileTab;
     private javax.swing.JDialog testdiag;
-    private javax.swing.JTextField tf1;
     // End of variables declaration//GEN-END:variables
 }
