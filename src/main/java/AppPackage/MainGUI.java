@@ -32,7 +32,7 @@ public class MainGUI extends javax.swing.JFrame {
     DefaultListModel keycapList = new DefaultListModel();
     private ArrayList getKeycaps ()
     {
-        ArrayList keycaps = new ArrayList();
+        ArrayList keycaps = new ArrayList(); 
         keycaps.add("red santa");
         keycaps.add("blue penguin");
         keycaps.add("green forest");
@@ -40,9 +40,9 @@ public class MainGUI extends javax.swing.JFrame {
         return keycaps;
     }
     /**
-     * bind data to JList
+     * bind data to keycapJList
      */
-    private void bindData () {
+    private void bindKeycapData () {
         getKeycaps().stream().forEach((keycap) -> {
             keycapList.addElement(keycap);
         });
@@ -51,9 +51,9 @@ public class MainGUI extends javax.swing.JFrame {
     }
     
     /**
-     * search/filter 
+     * search/filter for keycaps
      */
-    private void searchFilter (String searchTerm)
+    private void keycapSearchFilter (String searchTerm)
     {
         DefaultListModel filteredItems = new DefaultListModel();
         ArrayList keycaps = getKeycaps();
@@ -76,8 +76,9 @@ public class MainGUI extends javax.swing.JFrame {
      */
     public MainGUI() throws IOException{
         initComponents();
-        //filtetr list
-        this.bindData();
+        //filter keycap list
+        this.bindKeycapData();
+        //filter key switch list
         defaultPanel.setVisible(true);
         layoutPanel.setVisible(false);
         homeTab.setBackground(Color.WHITE);  
@@ -115,6 +116,10 @@ public class MainGUI extends javax.swing.JFrame {
         defaultPanel = new javax.swing.JPanel();
         layoutPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        KB60 = new javax.swing.JLabel();
+        KB65 = new javax.swing.JLabel();
+        KB75 = new javax.swing.JLabel();
+        KB80 = new javax.swing.JLabel();
         keycapsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -410,19 +415,57 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("layout panel");
 
+        KB60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KB60.setText("60%");
+        KB60.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KB60MouseClicked(evt);
+            }
+        });
+
+        KB65.setText("jLabel10");
+
+        KB75.setText("jLabel11");
+
+        KB80.setText("jLabel12");
+
         javax.swing.GroupLayout layoutPanelLayout = new javax.swing.GroupLayout(layoutPanel);
         layoutPanel.setLayout(layoutPanelLayout);
         layoutPanelLayout.setHorizontalGroup(
             layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layoutPanelLayout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
+            .addGroup(layoutPanelLayout.createSequentialGroup()
+                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(KB60, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154)
+                        .addComponent(KB65, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(KB75, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(146, 146, 146)
+                        .addComponent(KB80, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layoutPanelLayout.setVerticalGroup(
             layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layoutPanelLayout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
+                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(KB60, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(KB65, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(KB75, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layoutPanelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(KB80, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
@@ -449,6 +492,11 @@ public class MainGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(keycapJList);
 
         keyCapSearch.setText("search keycaps");
+        keyCapSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                keyCapSearchMouseClicked(evt);
+            }
+        });
         keyCapSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 keyCapSearchKeyReleased(evt);
@@ -997,13 +1045,27 @@ public class MainGUI extends javax.swing.JFrame {
     private void keycapJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keycapJListMouseClicked
         // TODO add your handling code here:
         //show dialog 
+        /**
+         * change this to input dialog
+         */
         JOptionPane.showMessageDialog(rootPane,keycapJList.getSelectedValue(), "Selected keycap", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_keycapJListMouseClicked
 
     private void keyCapSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyCapSearchKeyReleased
         // TODO add your handling code here:
-        searchFilter(keyCapSearch.getText());
+        keycapSearchFilter(keyCapSearch.getText());
     }//GEN-LAST:event_keyCapSearchKeyReleased
+
+    private void keyCapSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keyCapSearchMouseClicked
+        // TODO add your handling code here:
+        keyCapSearch.setText("");
+    }//GEN-LAST:event_keyCapSearchMouseClicked
+
+    private void KB60MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB60MouseClicked
+        // TODO add your handling code here:
+        String layout = "60%";
+        System.out.println(layout);        
+    }//GEN-LAST:event_KB60MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1048,6 +1110,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
+    private javax.swing.JLabel KB60;
+    private javax.swing.JLabel KB65;
+    private javax.swing.JLabel KB75;
+    private javax.swing.JLabel KB80;
     private javax.swing.JLabel LayoutLabel;
     private javax.swing.JPanel MainDisplayPanel;
     private javax.swing.JPanel MenuPanel;
