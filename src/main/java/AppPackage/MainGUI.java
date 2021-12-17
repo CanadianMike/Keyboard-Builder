@@ -75,6 +75,7 @@ public class MainGUI extends javax.swing.JFrame {
     /**
     * keyswitch filtered list
     */ 
+    
 /**
  *     DefaultListModel keySwitchList = new DefaultListModel();
     private ArrayList getSwitches ()
