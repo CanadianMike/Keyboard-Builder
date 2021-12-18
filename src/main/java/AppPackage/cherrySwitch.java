@@ -7,7 +7,7 @@ package AppPackage;
 
 /**
  *
- * @author Hao
+ * @author Michael W
  */
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,13 +29,13 @@ import org.jsoup.select.Elements;
 public class cherrySwitch {
     static void cherryMethod () throws IOException
     {
-        System.out.println("CHERRYWOO");
-        File cherryFile = new File("C:\\Users\\Hao\\Documents\\NetBeansProjects\\WebscrapeName\\src\\main\\java\\cherryswitch.txt");
+        System.out.println("CHERRYTEST");
+        File cherryFile = new File("C:\\Users\\Hao\\Documents\\NetBeansProjects\\Keyboard-Builder\\src\\main\\java\\AppPackage\\cherryswitch.txt");
        if (cherryFile.createNewFile())
        {System.out.println("File created");}
        else{System.out.println("File already exists");}
         //declare file writer
-        FileWriter fw = new FileWriter("C:\\Users\\Hao\\Documents\\NetBeansProjects\\WebscrapeName\\src\\main\\java\\cherryswitch.txt");
+        FileWriter fw = new FileWriter("C:\\Users\\Hao\\Documents\\NetBeansProjects\\Keyboard-Builder\\src\\main\\java\\AppPackage\\cherryswitch.txt");
         PrintWriter output = new PrintWriter(fw);
 //        String[] webData = new String[100];
         //declare file reader

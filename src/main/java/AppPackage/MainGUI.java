@@ -92,7 +92,7 @@ public class MainGUI extends javax.swing.JFrame {
         int maxIndx = 0;
         String rawSwitchData[] = new String [100];
         try {
-        File switchDataFile = new File("C:\\Users\\Hao\\Documents\\NetBeansProjects\\WebscrapeName\\src\\main\\java\\cherryswitch.txt");
+        File switchDataFile = new File("C:\\Users\\Hao\\Documents\\NetBeansProjects\\Keyboard-Builder\\src\\main\\java\\AppPackage\\cherryswitch.txt");
         //declare file scanner
         Scanner scanFile = new Scanner(switchDataFile);
         while (scanFile.hasNext()) //attr each element to the next line in the file
@@ -146,7 +146,8 @@ public class MainGUI extends javax.swing.JFrame {
         this.bindKeyswitchData();
         //init cart file
         Cart.initCart();
-        //
+        //cherry switch webscrape
+        cherrySwitch.cherryMethod();
         defaultPanel.setVisible(true);
         layoutPanel.setVisible(false);
         homeTab.setBackground(Color.WHITE);  
