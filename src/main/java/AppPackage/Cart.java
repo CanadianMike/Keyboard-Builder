@@ -34,4 +34,17 @@ public class Cart {
         cartOutput.close();
         cartfw.close();
     }
+    //change to return string to be used in main cart method in future
+    static void switchAddCart (String cartItem)
+    {
+        String switchItem = cartItem;
+    }
+    static void layoutAddCart (String cartItem)
+    {
+        String layoutSelection = cartItem;
+    }
+    static void keycapAddCart (String cartName)
+    {
+        String keycapItem = cartItem;
+    }
 }
