@@ -39,6 +39,7 @@ import javax.swing.JOptionPane;
  * @author Hao
  */
 public class MainGUI extends javax.swing.JFrame {
+    
         private void displayCart () throws IOException 
     {
         String cartData[] = new String [100];
@@ -274,7 +275,6 @@ public class MainGUI extends javax.swing.JFrame {
         loadLabel = new javax.swing.JLabel();
         cartTab = new javax.swing.JPanel();
         cartLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         MainDisplayPanel = new javax.swing.JPanel();
         cartPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -504,8 +504,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         cartLabel.setText("Cart");
 
-        jTextField1.setText("jTextField1");
-
         javax.swing.GroupLayout cartTabLayout = new javax.swing.GroupLayout(cartTab);
         cartTab.setLayout(cartTabLayout);
         cartTabLayout.setHorizontalGroup(
@@ -513,18 +511,14 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(cartTabLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(cartLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cartTabLayout.setVerticalGroup(
             cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cartTabLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cartLabel)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(cartLabel)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
@@ -1214,7 +1208,8 @@ public class MainGUI extends javax.swing.JFrame {
 //            } catch (IOException ex) {
 //                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            }
-        Cart.showCart();
+        Cart showCart = new Cart (""); 
+        showCart.displayCart();
         //display cart panel
         cartPanel.setVisible(true);
         defaultPanel.setVisible(false);
@@ -1283,9 +1278,10 @@ public class MainGUI extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION)
         {   //add to cart
 //            try {
-            Cart.addCart(selectedKeycap);
+//            Cart.addCart(selectedKeycap);
            
-            Cart stu_1 = new Cart ("Mexican"); 
+            Cart addKeycap = new Cart (selectedKeycap); 
+            addKeycap.addCart(selectedKeycap);
 //            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            } 
@@ -1313,7 +1309,8 @@ public class MainGUI extends javax.swing.JFrame {
         {   
          //add to cart
 //            try {
-            Cart.addCart(layout);
+            Cart add60Layout = new Cart (layout); 
+            add60Layout.addCart(layout);
 //            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            }
@@ -1333,8 +1330,8 @@ public class MainGUI extends javax.swing.JFrame {
         {        
             //add to cart
 //            try {
-            Cart.addCart(selectedSwitch);
-//            } catch (IOException ex) {
+            Cart addKeyswitch = new Cart (selectedSwitch); 
+            addKeyswitch.addCart(selectedSwitch);//            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            } 
         }
@@ -1368,8 +1365,8 @@ public class MainGUI extends javax.swing.JFrame {
         {  
          //add to cart
 //            try {
-            Cart.addCart(layout);
-//            } catch (IOException ex) {
+            Cart add65Layout = new Cart (layout); 
+            add65Layout.addCart(layout);//            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            }
             }
@@ -1386,8 +1383,8 @@ public class MainGUI extends javax.swing.JFrame {
         {   
          //add to cart
 //            try {
-            Cart.addCart(layout);
-//            } catch (IOException ex) {
+            Cart add75Layout = new Cart (layout); 
+            add75Layout.addCart(layout);//            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            }
             }
@@ -1403,8 +1400,8 @@ public class MainGUI extends javax.swing.JFrame {
         {   
          //add to cart
 //            try {
-            Cart.addCart(layout);
-//            } catch (IOException ex) {
+            Cart add80Layout = new Cart (layout); 
+            add80Layout.addCart(layout);//            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            }
             }
@@ -1485,7 +1482,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField keyCapSearch;
     private javax.swing.JList<String> keycapJList;
     private javax.swing.JLabel keycapsLabel;

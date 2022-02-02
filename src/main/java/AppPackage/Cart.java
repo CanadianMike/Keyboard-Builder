@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  *
  * @author Hao
  */
-public class Cart {
+public class Cart extends MainGUI{
     public ArrayList<String> cartItems = new ArrayList<String>();
-    String item = "";
-    Cart (String additem)
+    String item;
+    Cart (String additem) throws IOException 
     {
         item = additem;
     }
@@ -47,9 +47,10 @@ public class Cart {
 //        cartOutput.close();
 //        cartfw.close();
     }
-    public void showCart ()
+    public void displayCart ()
     {
-        System.out.print(cartItems);
+        System.out.println("displasying thy cart");
+        cartTextArea.setText("w0w");
     }
 
     //change to return string to be used in main cart method in future
