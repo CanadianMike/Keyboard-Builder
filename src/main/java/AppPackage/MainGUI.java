@@ -7,6 +7,8 @@ package AppPackage;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.lang.*;
 import java.io.*;
 //imports for jsoup
@@ -22,6 +24,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //for icons
 //import javax.swing.JFrame;
@@ -36,6 +39,40 @@ import javax.swing.JOptionPane;
  * @author Hao
  */
 public class MainGUI extends javax.swing.JFrame {
+        private void displayCart () throws IOException 
+    {
+        String cartData[] = new String [100];
+        int maxIndx = 0;
+        String cartstuff = "";
+        try {
+            FileReader cartReader = new FileReader("src\\main\\java\\AppPackage\\cart.txt");
+            char[] cartContent = new char[10];
+//            int charsRead = cartReader.read(cartContent, 0 , cartContent.length);
+            cartReader.read(cartContent);
+            for (char c : cartContent)
+                cartstuff = cartstuff+Character.toString(c);
+            cartReader.close();
+                cartTextArea.setText(cartstuff);
+                System.out.print(cartstuff);
+            
+//        File cartFile = new File("src\\main\\java\\AppPackage\\cart.txt");
+//        //declare file scanner
+//        Scanner scanFile = new Scanner(cartFile);
+//        while (scanFile.hasNext()) //attr each element to the next line in the file
+//        {
+//            cartData[maxIndx] = scanFile.nextLine();  
+//            maxIndx++; 
+//        }
+//        scanFile.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        for (int cartIndx = 0 ; cartIndx < maxIndx; cartIndx++)
+//        {
+//            
+//            cartTextArea.setText(cartData[cartIndx]);
+//        }        
+    }
     //key switch filter
 
     
@@ -92,7 +129,7 @@ public class MainGUI extends javax.swing.JFrame {
         int maxIndx = 0;
         String rawSwitchData[] = new String [100];
         try {
-        File switchDataFile = new File("C:\\Users\\Hao\\Documents\\NetBeansProjects\\Keyboard-Builder\\src\\main\\java\\AppPackage\\cherryswitch.txt");
+        File switchDataFile = new File("src\\main\\java\\AppPackage\\cherryswitch.txt");
         //declare file scanner
         Scanner scanFile = new Scanner(switchDataFile);
         while (scanFile.hasNext()) //attr each element to the next line in the file
@@ -135,23 +172,79 @@ public class MainGUI extends javax.swing.JFrame {
         keySwitchList = filteredKeyswitches;
         keyswitchJList.setModel(keySwitchList);
     }
+ private void scaleIcon() 
+ {
+//        int iconNumber = 0;
+//        String iconLabel = "";
+//        int [] iconNumberArr = new int [] {60,65,75,80};//declaration
+//        for (int i = 0; i < iconNumberArr.length; i++)
+//        {
+//            iconNumber = i;
+//            iconLabel = "KB"+iconNumber+"Icon";
+//        }
+        //homeIcon
+        ImageIcon homeIMG = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/z70ultra.jpg")));
+        Image getHomeImg = homeIMG.getImage();
+        Image scaleHomeImg = getHomeImg.getScaledInstance(homeIcon.getWidth(),homeIcon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon finalHomeImg = new ImageIcon(scaleHomeImg);
+        homeIcon.setIcon(finalHomeImg);
+        //KB60 icon
+        ImageIcon KB60Img = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/60_KBIcon.png")));
+        Image getKB60Img = KB60Img.getImage();
+        Image scaleKB60Img = getKB60Img.getScaledInstance(KB60Icon.getWidth(),KB60Icon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon finalKB60Img = new ImageIcon(scaleKB60Img);
+        KB60Icon.setIcon(finalKB60Img);
+        //KB65 icon
+        ImageIcon KB65Img = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/65_KBIcon.png")));
+        Image getKB65Img = KB65Img.getImage();
+        Image scaleKB65Img = getKB65Img.getScaledInstance(KB65Icon.getWidth(),KB65Icon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon finalKB65Img = new ImageIcon(scaleKB65Img);
+        KB65Icon.setIcon(finalKB65Img);
+        //KB75 icon
+        ImageIcon KB75Img = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/75_KBIcon.png")));
+        Image getKB75Img = KB75Img.getImage();
+        Image scaleKB75Img = getKB75Img.getScaledInstance(KB75Icon.getWidth(),KB75Icon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon finalKB75Img = new ImageIcon(scaleKB75Img);
+        KB75Icon.setIcon(finalKB75Img);
+        //KB80 icon
+        ImageIcon KB80Img = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/80_KBIcon.png")));
+        Image getKB80Img = KB80Img.getImage();
+        Image scaleKB80Img = getKB80Img.getScaledInstance(KB80Icon.getWidth(),KB80Icon.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon finalKB80Img = new ImageIcon(scaleKB80Img);
+        KB80Icon.setIcon(finalKB80Img);
+ }
     /**
      * Creates new form MainGUI
      */
     public MainGUI() throws IOException{
         initComponents();
+        defaultPanel.setVisible(true);
+        layoutPanel.setVisible(true);
+        cartPanel.setVisible(false);
+        keyswitchPanel.setVisible(false);
+        keycapsPanel.setVisible(false);
+        defaultPanel.setVisible(false);
+        homeTab.setBackground(Color.WHITE);
+        scaleIcon();
         //to filter keycap list
         this.bindKeycapData();
         //to filter key switch    
         this.bindKeyswitchData();
-        //init cart file
-        Cart.initCart();
         //cherry switch webscrape
         cherrySwitch.cherryMethod();
-        defaultPanel.setVisible(true);
-        layoutPanel.setVisible(false);
-        homeTab.setBackground(Color.WHITE);  
+        //init cart file
+        Cart.initCart();
+  
     }
+//    private void setVisibility (String visPanel, boolean visValue)
+//    {
+//        
+//        layoutPanel.setVisible(false);
+//        keyswitchPanel.setVisible(false);
+//        keycapsPanel.setVisible(false);
+//        defaultPanel.setVisible(false);
+//        cartPanel.setVisible(false);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,14 +274,19 @@ public class MainGUI extends javax.swing.JFrame {
         loadLabel = new javax.swing.JLabel();
         cartTab = new javax.swing.JPanel();
         cartLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         MainDisplayPanel = new javax.swing.JPanel();
+        cartPanel = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        cartTextArea = new javax.swing.JTextArea();
         defaultPanel = new javax.swing.JPanel();
+        homeIcon = new javax.swing.JLabel();
         layoutPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        KB60 = new javax.swing.JLabel();
-        KB65 = new javax.swing.JLabel();
-        KB75 = new javax.swing.JLabel();
-        KB80 = new javax.swing.JLabel();
+        KB60Icon = new javax.swing.JLabel();
+        KB65Icon = new javax.swing.JLabel();
+        KB75Icon = new javax.swing.JLabel();
+        KB80Icon = new javax.swing.JLabel();
         keycapsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -215,8 +313,6 @@ public class MainGUI extends javax.swing.JFrame {
         clickyTab = new javax.swing.JPanel();
         clickyLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cartPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
 
         jLabel6.setText("choose this iption or die");
 
@@ -274,7 +370,7 @@ public class MainGUI extends javax.swing.JFrame {
         homeTabLayout.setVerticalGroup(
             homeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeTabLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(homeLabel)
                 .addGap(17, 17, 17))
         );
@@ -374,7 +470,7 @@ public class MainGUI extends javax.swing.JFrame {
         saveTabLayout.setVerticalGroup(
             saveTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saveTabLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveLabel)
                 .addGap(21, 21, 21))
         );
@@ -390,12 +486,12 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(loadTabLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(loadLabel)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         loadTabLayout.setVerticalGroup(
             loadTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadTabLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(loadLabel)
                 .addGap(18, 18, 18))
         );
@@ -408,6 +504,8 @@ public class MainGUI extends javax.swing.JFrame {
 
         cartLabel.setText("Cart");
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout cartTabLayout = new javax.swing.GroupLayout(cartTab);
         cartTab.setLayout(cartTabLayout);
         cartTabLayout.setHorizontalGroup(
@@ -415,13 +513,17 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(cartTabLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(cartLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         cartTabLayout.setVerticalGroup(
             cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cartTabLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(cartLabel)
+                .addGap(18, 18, 18)
+                .addGroup(cartTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cartLabel)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -461,18 +563,61 @@ public class MainGUI extends javax.swing.JFrame {
 
         MainDisplayPanel.setLayout(new javax.swing.OverlayLayout(MainDisplayPanel));
 
+        cartPanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel8.setText("cart");
+
+        cartTextArea.setColumns(20);
+        cartTextArea.setRows(5);
+        jScrollPane3.setViewportView(cartTextArea);
+
+        javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
+        cartPanel.setLayout(cartPanelLayout);
+        cartPanelLayout.setHorizontalGroup(
+            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cartPanelLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(159, Short.MAX_VALUE))
+            .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE))
+        );
+        cartPanelLayout.setVerticalGroup(
+            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cartPanelLayout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
+            .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cartPanelLayout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(jLabel8)
+                    .addContainerGap(501, Short.MAX_VALUE)))
+        );
+
+        MainDisplayPanel.add(cartPanel);
+
         defaultPanel.setBackground(new java.awt.Color(255, 102, 102));
         defaultPanel.setPreferredSize(new java.awt.Dimension(793, 560));
+
+        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/z70ultra.jpg"))); // NOI18N
 
         javax.swing.GroupLayout defaultPanelLayout = new javax.swing.GroupLayout(defaultPanel);
         defaultPanel.setLayout(defaultPanelLayout);
         defaultPanelLayout.setHorizontalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGroup(defaultPanelLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         defaultPanelLayout.setVerticalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGroup(defaultPanelLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         MainDisplayPanel.add(defaultPanel);
@@ -480,36 +625,37 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanel.setBackground(new java.awt.Color(51, 255, 255));
         layoutPanel.setPreferredSize(new java.awt.Dimension(793, 560));
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("layout panel");
-
-        KB60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KB60.setText("60%");
-        KB60.addMouseListener(new java.awt.event.MouseAdapter() {
+        KB60Icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KB60Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/60_KBIcon.png"))); // NOI18N
+        KB60Icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KB60MouseClicked(evt);
+                KB60IconMouseClicked(evt);
             }
         });
 
-        KB65.setText("65%");
-        KB65.addMouseListener(new java.awt.event.MouseAdapter() {
+        KB65Icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KB65Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/60_KBIcon.png"))); // NOI18N
+        KB65Icon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        KB65Icon.setIconTextGap(1);
+        KB65Icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KB65MouseClicked(evt);
+                KB65IconMouseClicked(evt);
             }
         });
 
-        KB75.setText("75%");
-        KB75.addMouseListener(new java.awt.event.MouseAdapter() {
+        KB75Icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KB75Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/75_KBIcon.png"))); // NOI18N
+        KB75Icon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        KB75Icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KB75MouseClicked(evt);
+                KB75IconMouseClicked(evt);
             }
         });
 
-        KB80.setText("80%");
-        KB80.addMouseListener(new java.awt.event.MouseAdapter() {
+        KB80Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/80_KBIcon.png"))); // NOI18N
+        KB80Icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KB80MouseClicked(evt);
+                KB80IconMouseClicked(evt);
             }
         });
 
@@ -518,40 +664,33 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanelLayout.setHorizontalGroup(
             layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layoutPanelLayout.createSequentialGroup()
-                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layoutPanelLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(KB60, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(KB65, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layoutPanelLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(KB75, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(146, 146, 146)
-                        .addComponent(KB80, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layoutPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(KB75Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(KB80Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addGroup(layoutPanelLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(KB60Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(KB65Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layoutPanelLayout.setVerticalGroup(
             layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layoutPanelLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(KB60, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(KB65, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layoutPanelLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(KB75, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layoutPanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(KB80, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layoutPanelLayout.createSequentialGroup()
+                        .addComponent(KB65Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layoutPanelLayout.createSequentialGroup()
+                        .addComponent(KB60Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137)))
+                .addGroup(layoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(KB75Icon, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(KB80Icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(83, 83, 83))
         );
 
         MainDisplayPanel.add(layoutPanel);
@@ -560,7 +699,6 @@ public class MainGUI extends javax.swing.JFrame {
         keycapsPanel.setPreferredSize(new java.awt.Dimension(793, 560));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("keycapspanel");
 
         keycapJList.setModel(new javax.swing.AbstractListModel<String>() {
@@ -609,7 +747,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(keycapsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MainDisplayPanel.add(keycapsPanel);
@@ -652,7 +790,7 @@ public class MainGUI extends javax.swing.JFrame {
         linearPanelLayout.setHorizontalGroup(
             linearPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, linearPanelLayout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(linearPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(keyswitchSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -665,7 +803,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(keyswitchSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(153, 255, 153));
@@ -684,7 +822,7 @@ public class MainGUI extends javax.swing.JFrame {
         tactilePanelLayout.setVerticalGroup(
             tactilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tactilePanelLayout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(262, 262, 262))
         );
@@ -698,7 +836,7 @@ public class MainGUI extends javax.swing.JFrame {
         clickyPanelLayout.setHorizontalGroup(
             clickyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clickyPanelLayout.createSequentialGroup()
-                .addContainerGap(333, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129))
         );
@@ -707,7 +845,7 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(clickyPanelLayout.createSequentialGroup()
                 .addGap(230, 230, 230)
                 .addComponent(jLabel7)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         jLayeredPane1.setLayer(linearPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -862,41 +1000,14 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        cartPanel.setBackground(new java.awt.Color(0, 204, 204));
-
-        jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel8.setText("cart");
-
-        javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
-        cartPanel.setLayout(cartPanelLayout);
-        cartPanelLayout.setHorizontalGroup(
-            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-            .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-        );
-        cartPanelLayout.setVerticalGroup(
-            cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 87, Short.MAX_VALUE)
-            .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cartPanelLayout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(jLabel8)
-                    .addContainerGap(28, Short.MAX_VALUE)))
-        );
-
         jLayeredPane3.setLayer(keyswitchDisplayPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(keyswitchMenuPanel, javax.swing.JLayeredPane.MODAL_LAYER);
-        jLayeredPane3.setLayer(cartPanel, javax.swing.JLayeredPane.POPUP_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
-                .addContainerGap(405, Short.MAX_VALUE)
-                .addComponent(cartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+            .addGap(0, 793, Short.MAX_VALUE)
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -908,10 +1019,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(cartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(477, Short.MAX_VALUE))
+            .addGap(0, 560, Short.MAX_VALUE)
             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -931,7 +1039,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         keyswitchPanelLayout.setVerticalGroup(
             keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(keyswitchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLayeredPane3, javax.swing.GroupLayout.Alignment.TRAILING))
         );
@@ -942,7 +1050,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPane.setLayout(keyswitchPaneLayout);
         keyswitchPaneLayout.setHorizontalGroup(
             keyswitchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(keyswitchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(keyswitchPaneLayout.createSequentialGroup()
                     .addContainerGap()
@@ -951,11 +1059,11 @@ public class MainGUI extends javax.swing.JFrame {
         );
         keyswitchPaneLayout.setVerticalGroup(
             keyswitchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
             .addGroup(keyswitchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(keyswitchPaneLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(keyswitchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                    .addComponent(keyswitchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -972,7 +1080,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                .addComponent(MainDisplayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
                 .addContainerGap())
         );
         DesktopPaneLayout.setVerticalGroup(
@@ -1000,7 +1108,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
         defaultPanel.setVisible(false);
-//        cartPanel.setVisible(false);
+        cartPanel.setVisible(false);
         //change current tab colour according to current selection
         layoutTab.setBackground(Color.white);
         keyswitchTab.setBackground(new Color(128,128,128));
@@ -1019,7 +1127,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(true);
         keycapsPanel.setVisible(false);
         defaultPanel.setVisible(false);
-//        cartTab.setVisible(false);
+        cartPanel.setVisible(false);
         //change current tab colour according to current selection
         keyswitchTab.setBackground(Color.white);
         saveTab.setBackground(new Color(128,128,128));
@@ -1037,7 +1145,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(true);
         defaultPanel.setVisible(false);
-//        cartTab.setVisible(false);
+        cartPanel.setVisible(false);
         //change current tab colour according to current selection
         keycapsTab.setBackground(Color.white);
         saveTab.setBackground(new Color(128,128,128));
@@ -1056,7 +1164,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
-//        cartTab.setVisible(false);
+        cartPanel.setVisible(false);
         //save to file 
         //change current tab colour according to current selection
         saveTab.setBackground(Color.white);
@@ -1066,6 +1174,17 @@ public class MainGUI extends javax.swing.JFrame {
         homeTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
+        //option dialog popup
+//        String selectedKeycap = "Keycaps: "+keycapJList.getSelectedValue();
+//        System.out.println(selectedKeycap);
+        String saveText = "current items";
+        int response = JOptionPane.showConfirmDialog(null,saveText, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (response == JOptionPane.YES_OPTION)
+        {   //save cart
+
+        }
+        else
+        {} 
     }//GEN-LAST:event_saveTabMouseClicked
 
     private void homeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeTabMouseClicked
@@ -1075,7 +1194,7 @@ public class MainGUI extends javax.swing.JFrame {
         layoutPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
-//        cartTab.setVisible(false);
+        cartPanel.setVisible(false);
         //change current tab colour according to current selection
         homeTab.setBackground(Color.white);
         keyswitchTab.setBackground(new Color(128,128,128));
@@ -1084,12 +1203,20 @@ public class MainGUI extends javax.swing.JFrame {
         saveTab.setBackground(new Color(128,128,128));
         loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
+        
     }//GEN-LAST:event_homeTabMouseClicked
 
     private void cartTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartTabMouseClicked
-        // TODO add your handling code here:
+//            try {
+//                // TODO add your handling code here:
+//                //set text of text area
+//                displayCart();
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        Cart.showCart();
         //display cart panel
-        cartTab.setVisible(true);
+        cartPanel.setVisible(true);
         defaultPanel.setVisible(false);
         layoutPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
@@ -1155,11 +1282,13 @@ public class MainGUI extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(null,itemLink, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {   //add to cart
-            try {
+//            try {
             Cart.addCart(selectedKeycap);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+           
+            Cart stu_1 = new Cart ("Mexican"); 
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            } 
         }
         else
         {}       
@@ -1175,7 +1304,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyCapSearch.setText("");
     }//GEN-LAST:event_keyCapSearchMouseClicked
 
-    private void KB60MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB60MouseClicked
+    private void KB60IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB60IconMouseClicked
         // TODO add your handling code here:     
         String layout = "Layout: 60%"; 
         System.out.println(layout);//test cart value
@@ -1183,15 +1312,15 @@ public class MainGUI extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-            try {
+//            try {
             Cart.addCart(layout);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             }
         else
         {}        
-    }//GEN-LAST:event_KB60MouseClicked
+    }//GEN-LAST:event_KB60IconMouseClicked
 
     private void keyswitchJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keyswitchJListMouseClicked
         // TODO add your handling code here:
@@ -1203,11 +1332,11 @@ public class MainGUI extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION)
         {        
             //add to cart
-            try {
+//            try {
             Cart.addCart(selectedSwitch);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            } 
         }
         else
         {}       
@@ -1230,7 +1359,7 @@ public class MainGUI extends javax.swing.JFrame {
         keyswitchSearch.setText("");
     }//GEN-LAST:event_keyswitchSearchMouseClicked
 
-    private void KB65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB65MouseClicked
+    private void KB65IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB65IconMouseClicked
         // TODO add your handling code here:
         String layout = "Layout: 65%";
         System.out.println(layout);//test cart value
@@ -1238,17 +1367,17 @@ public class MainGUI extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION)
         {  
          //add to cart
-            try {
+//            try {
             Cart.addCart(layout);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             }
         else
         {} 
-    }//GEN-LAST:event_KB65MouseClicked
+    }//GEN-LAST:event_KB65IconMouseClicked
 
-    private void KB75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB75MouseClicked
+    private void KB75IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB75IconMouseClicked
         // TODO add your handling code here:
         String layout = "Layout: 75%";
         System.out.println(layout);//test cart value
@@ -1256,32 +1385,32 @@ public class MainGUI extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-            try {
+//            try {
             Cart.addCart(layout);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             }
         else
         {} 
-    }//GEN-LAST:event_KB75MouseClicked
+    }//GEN-LAST:event_KB75IconMouseClicked
 
-    private void KB80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB80MouseClicked
+    private void KB80IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB80IconMouseClicked
         String layout = "Layout: 80%";
         System.out.println(layout); //test cart value
         int response = JOptionPane.showConfirmDialog(null,layout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-            try {
+//            try {
             Cart.addCart(layout);
-            } catch (IOException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            } catch (IOException ex) {
+//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             }
         else
         {} 
-    }//GEN-LAST:event_KB80MouseClicked
+    }//GEN-LAST:event_KB80IconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1326,23 +1455,24 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
-    private javax.swing.JLabel KB60;
-    private javax.swing.JLabel KB65;
-    private javax.swing.JLabel KB75;
-    private javax.swing.JLabel KB80;
+    private javax.swing.JLabel KB60Icon;
+    private javax.swing.JLabel KB65Icon;
+    private javax.swing.JLabel KB75Icon;
+    private javax.swing.JLabel KB80Icon;
     private javax.swing.JLabel LayoutLabel;
     private javax.swing.JPanel MainDisplayPanel;
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JLabel cartLabel;
     private javax.swing.JPanel cartPanel;
     private javax.swing.JPanel cartTab;
+    public javax.swing.JTextArea cartTextArea;
     private javax.swing.JLabel clickyLabel;
     private javax.swing.JPanel clickyPanel;
     private javax.swing.JPanel clickyTab;
     private javax.swing.JPanel defaultPanel;
+    private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homeTab;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -1354,6 +1484,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField keyCapSearch;
     private javax.swing.JList<String> keycapJList;
     private javax.swing.JLabel keycapsLabel;
