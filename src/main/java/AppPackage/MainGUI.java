@@ -5,6 +5,7 @@
  */
 package AppPackage;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
@@ -13,6 +14,7 @@ import java.lang.*;
 import java.io.*;
 //imports for jsoup
 import java.io.IOException;  
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import org.jsoup.Jsoup;  
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 //for icons
 //import javax.swing.JFrame;
 //import java.awt.image.BufferedImage;
@@ -39,41 +42,10 @@ import javax.swing.JOptionPane;
  * @author Hao
  */
 public class MainGUI extends javax.swing.JFrame {
+Cart cartObj = new Cart(); //declare Cart object instance
+
     
-        private void displayCart () throws IOException 
-    {
-        String cartData[] = new String [100];
-        int maxIndx = 0;
-        String cartstuff = "";
-        try {
-            FileReader cartReader = new FileReader("src\\main\\java\\AppPackage\\cart.txt");
-            char[] cartContent = new char[10];
-//            int charsRead = cartReader.read(cartContent, 0 , cartContent.length);
-            cartReader.read(cartContent);
-            for (char c : cartContent)
-                cartstuff = cartstuff+Character.toString(c);
-            cartReader.close();
-                cartTextArea.setText(cartstuff);
-                System.out.print(cartstuff);
-            
-//        File cartFile = new File("src\\main\\java\\AppPackage\\cart.txt");
-//        //declare file scanner
-//        Scanner scanFile = new Scanner(cartFile);
-//        while (scanFile.hasNext()) //attr each element to the next line in the file
-//        {
-//            cartData[maxIndx] = scanFile.nextLine();  
-//            maxIndx++; 
-//        }
-//        scanFile.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-//        for (int cartIndx = 0 ; cartIndx < maxIndx; cartIndx++)
-//        {
-//            
-//            cartTextArea.setText(cartData[cartIndx]);
-//        }        
-    }
+    
     //key switch filter
 
     
@@ -220,11 +192,10 @@ public class MainGUI extends javax.swing.JFrame {
     public MainGUI() throws IOException{
         initComponents();
         defaultPanel.setVisible(true);
-        layoutPanel.setVisible(true);
+        layoutPanel.setVisible(false);
         cartPanel.setVisible(false);
         keyswitchPanel.setVisible(false);
         keycapsPanel.setVisible(false);
-        defaultPanel.setVisible(false);
         homeTab.setBackground(Color.WHITE);
         scaleIcon();
         //to filter keycap list
@@ -280,6 +251,8 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         cartTextArea = new javax.swing.JTextArea();
+        editCartButton = new javax.swing.JButton();
+        updateCartButton = new javax.swing.JButton();
         defaultPanel = new javax.swing.JPanel();
         homeIcon = new javax.swing.JLabel();
         layoutPanel = new javax.swing.JPanel();
@@ -566,13 +539,30 @@ public class MainGUI extends javax.swing.JFrame {
         cartTextArea.setRows(5);
         jScrollPane3.setViewportView(cartTextArea);
 
+        editCartButton.setText("Edit Cart");
+        editCartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editCartButtonMouseClicked(evt);
+            }
+        });
+
+        updateCartButton.setText("Update Cart");
+        updateCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCartButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cartPanelLayout = new javax.swing.GroupLayout(cartPanel);
         cartPanel.setLayout(cartPanelLayout);
         cartPanelLayout.setHorizontalGroup(
             cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cartPanelLayout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(updateCartButton)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editCartButton))
                 .addContainerGap(159, Short.MAX_VALUE))
             .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE))
@@ -582,7 +572,11 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(cartPanelLayout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(editCartButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(updateCartButton)
+                .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(cartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cartPanelLayout.createSequentialGroup()
                     .addGap(27, 27, 27)
@@ -1201,30 +1195,29 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_homeTabMouseClicked
 
     private void cartTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartTabMouseClicked
-//            try {
-//                // TODO add your handling code here:
-//                //set text of text area
-//                displayCart();
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        Cart showCart = new Cart (""); 
-        showCart.displayCart();
-        //display cart panel
-        cartPanel.setVisible(true);
-        defaultPanel.setVisible(false);
-        layoutPanel.setVisible(false);
-        keyswitchPanel.setVisible(false);
-        keycapsPanel.setVisible(false);
-        //save to file 
-        //change current tab colour according to current selection
-        cartTab.setBackground(Color.white);
-        homeTab.setBackground(new Color(128,128,128));
-        keyswitchTab.setBackground(new Color(128,128,128));
-        keycapsTab.setBackground(new Color(128,128,128));
-        layoutTab.setBackground(new Color(128,128,128));
-        saveTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
+
+        String cartArr[] = cartObj.displayCart();
+        cartTextArea.setText("");
+        for(String a : cartArr)
+        cartTextArea.append(a+"\n");
+
+         
+//display cart panel
+cartPanel.setVisible(true);
+defaultPanel.setVisible(false);
+layoutPanel.setVisible(false);
+keyswitchPanel.setVisible(false);
+keycapsPanel.setVisible(false);
+//save to file
+//change current tab colour according to current selection
+cartTab.setBackground(Color.white);
+homeTab.setBackground(new Color(128,128,128));
+keyswitchTab.setBackground(new Color(128,128,128));
+keycapsTab.setBackground(new Color(128,128,128));
+layoutTab.setBackground(new Color(128,128,128));
+saveTab.setBackground(new Color(128,128,128));
+loadTab.setBackground(new Color(128,128,128));
+            
     }//GEN-LAST:event_cartTabMouseClicked
 
     private void linearTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linearTabMouseClicked
@@ -1271,6 +1264,10 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void keycapJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keycapJListMouseClicked
         // TODO add your handling code here:
+//        ImageIcon icon = new ImageIcon("src\\main\\java\\Resources\\apple.png");
+//        JPanel keycapPanel = new JPanel (new BorderLayout());
+//        keycapPanel.add(textPanel);
+//        keycapPanel.add();
         String selectedKeycap = "Keycaps: "+keycapJList.getSelectedValue();
         System.out.println(selectedKeycap);
         String itemLink = keycapJList.getSelectedValue();
@@ -1279,9 +1276,15 @@ public class MainGUI extends javax.swing.JFrame {
         {   //add to cart
 //            try {
 //            Cart.addCart(selectedKeycap);
+            cartObj.addCart(selectedKeycap);
            
-            Cart addKeycap = new Cart (selectedKeycap); 
-            addKeycap.addCart(selectedKeycap);
+//            Cart addKeycap = null; 
+//            try {
+//                addKeycap = new Cart (selectedKeycap);
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            addKeycap.addCart(selectedKeycap);
 //            } catch (IOException ex) {
 //            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
 //            } 
@@ -1302,18 +1305,14 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void KB60IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB60IconMouseClicked
         // TODO add your handling code here:     
-        String layout = "Layout: 60%"; 
-        System.out.println(layout);//test cart value
-        int response = JOptionPane.showConfirmDialog(null,layout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
+        String selectedLayout = "Layout: 60%"; 
+        System.out.println(selectedLayout+" clicked");//test cart value
+        int response = JOptionPane.showConfirmDialog(null,selectedLayout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-//            try {
-            Cart add60Layout = new Cart (layout); 
-            add60Layout.addCart(layout);
-//            } catch (IOException ex) {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            cartObj.addCart(selectedLayout);
+
             }
         else
         {}        
@@ -1327,13 +1326,8 @@ public class MainGUI extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(rootPane,itemLink, "Selected switch", JOptionPane.INFORMATION_MESSAGE);
         int response = JOptionPane.showConfirmDialog(null,itemLink, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
-        {        
-            //add to cart
-//            try {
-            Cart addKeyswitch = new Cart (selectedSwitch); 
-            addKeyswitch.addCart(selectedSwitch);//            } catch (IOException ex) {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            } 
+        {  
+            cartObj.addCart(selectedSwitch);
         }
         else
         {}       
@@ -1358,17 +1352,13 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void KB65IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB65IconMouseClicked
         // TODO add your handling code here:
-        String layout = "Layout: 65%";
-        System.out.println(layout);//test cart value
-        int response = JOptionPane.showConfirmDialog(null,layout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
+        String selectedLayout = "Layout: 65%";
+        System.out.println(selectedLayout+" clicked");//test cart value
+        int response = JOptionPane.showConfirmDialog(null,selectedLayout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {  
          //add to cart
-//            try {
-            Cart add65Layout = new Cart (layout); 
-            add65Layout.addCart(layout);//            } catch (IOException ex) {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            cartObj.addCart(selectedLayout);
             }
         else
         {} 
@@ -1376,39 +1366,63 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void KB75IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB75IconMouseClicked
         // TODO add your handling code here:
-        String layout = "Layout: 75%";
-        System.out.println(layout);//test cart value
-        int response = JOptionPane.showConfirmDialog(null,layout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
+        String selectedLayout = "Layout: 75%";
+        System.out.println(selectedLayout+" clicked");//test cart value
+        int response = JOptionPane.showConfirmDialog(null,selectedLayout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-//            try {
-            Cart add75Layout = new Cart (layout); 
-            add75Layout.addCart(layout);//            } catch (IOException ex) {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            cartObj.addCart(selectedLayout);
             }
         else
         {} 
     }//GEN-LAST:event_KB75IconMouseClicked
 
     private void KB80IconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KB80IconMouseClicked
-        String layout = "Layout: 80%";
-        System.out.println(layout); //test cart value
-        int response = JOptionPane.showConfirmDialog(null,layout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
+        String selectedLayout = "Layout: 80%";
+        System.out.println(selectedLayout+"clicked"); //test cart value
+        int response = JOptionPane.showConfirmDialog(null,selectedLayout, "Add selected item to cart?", JOptionPane.YES_NO_CANCEL_OPTION);
         if (response == JOptionPane.YES_OPTION)
         {   
          //add to cart
-//            try {
-            Cart add80Layout = new Cart (layout); 
-            add80Layout.addCart(layout);//            } catch (IOException ex) {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            cartObj.addCart(selectedLayout);
             }
         else
         {} 
     }//GEN-LAST:event_KB80IconMouseClicked
 
+    private void editCartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCartButtonMouseClicked
+        // TODO add your handling code here:
+//        String removeItem = JOptionPane.showInputDialog(null, "Enter name of item you want to remove:");
+        Cart editCart = new Cart();
+        String removeItem = editCart.showInputDialog();
+
+        try {
+String editConfirm = "Confirm Changes?";
+            int response = JOptionPane.showConfirmDialog(null,editConfirm,"Edit Cart",JOptionPane.YES_NO_CANCEL_OPTION);
+            if (response == JOptionPane.YES_OPTION)
+            {
+        cartObj.removeCart(removeItem);
+//               displayCart();
+            }        }
+        catch(ArrayIndexOutOfBoundsException e)        
+        {
+           editCart.showInputDialog();
+        }
+           
+        
+           
+        
+    }//GEN-LAST:event_editCartButtonMouseClicked
+
+    private void updateCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCartButtonActionPerformed
+        // TODO add your handling code here:
+        String cartArr[] = cartObj.displayCart();
+        cartTextArea.setText("");
+        for(String a : cartArr)
+        cartTextArea.append(a+"\n");
+    }//GEN-LAST:event_updateCartButtonActionPerformed
+  
     /**
      * @param args the command line arguments
      */
@@ -1467,6 +1481,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel clickyPanel;
     private javax.swing.JPanel clickyTab;
     private javax.swing.JPanel defaultPanel;
+    private javax.swing.JButton editCartButton;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homeTab;
@@ -1508,5 +1523,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel tactilePanel;
     private javax.swing.JPanel tactileTab;
     private javax.swing.JDialog testdiag;
+    private javax.swing.JButton updateCartButton;
     // End of variables declaration//GEN-END:variables
 }
