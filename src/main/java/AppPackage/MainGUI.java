@@ -278,8 +278,6 @@ String keyswitchLink;
         keycapsLabel = new javax.swing.JLabel();
         saveTab = new javax.swing.JPanel();
         saveLabel = new javax.swing.JLabel();
-        loadTab = new javax.swing.JPanel();
-        loadLabel = new javax.swing.JLabel();
         cartTab = new javax.swing.JPanel();
         cartLabel = new javax.swing.JLabel();
         MainDisplayPanel = new javax.swing.JPanel();
@@ -450,27 +448,6 @@ String keyswitchLink;
                 .addGap(21, 21, 21))
         );
 
-        loadTab.setPreferredSize(new java.awt.Dimension(180, 60));
-
-        loadLabel.setText("Load Configuration");
-
-        javax.swing.GroupLayout loadTabLayout = new javax.swing.GroupLayout(loadTab);
-        loadTab.setLayout(loadTabLayout);
-        loadTabLayout.setHorizontalGroup(
-            loadTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loadTabLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(loadLabel)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        loadTabLayout.setVerticalGroup(
-            loadTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadTabLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(loadLabel)
-                .addGap(18, 18, 18))
-        );
-
         cartTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cartTabMouseClicked(evt);
@@ -501,7 +478,6 @@ String keyswitchLink;
         MenuPanelLayout.setHorizontalGroup(
             MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(saveTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(loadTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(keycapsTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -525,9 +501,7 @@ String keyswitchLink;
                 .addComponent(cartTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loadTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         MainDisplayPanel.setBackground(new java.awt.Color(204, 204, 255));
@@ -973,7 +947,6 @@ String keyswitchLink;
         keycapsTab.setBackground(new Color(128,128,128));
         saveTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
 
     }//GEN-LAST:event_layoutTabMouseClicked
@@ -992,7 +965,6 @@ String keyswitchLink;
         keycapsTab.setBackground(new Color(128,128,128));
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_keyswitchTabMouseClicked
 
@@ -1010,7 +982,6 @@ String keyswitchLink;
         keyswitchTab.setBackground(new Color(128,128,128));
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
     }//GEN-LAST:event_keycapsTabMouseClicked
 
@@ -1030,7 +1001,6 @@ String keyswitchLink;
         keycapsTab.setBackground(new Color(128,128,128));
         layoutTab.setBackground(new Color(128,128,128));
         homeTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
         //option dialog popup
         
@@ -1065,7 +1035,6 @@ String keyswitchLink;
         keycapsTab.setBackground(new Color(128,128,128));
         layoutTab.setBackground(new Color(128,128,128));
         saveTab.setBackground(new Color(128,128,128));
-        loadTab.setBackground(new Color(128,128,128));
         cartTab.setBackground(new Color(128,128,128));
         
     }//GEN-LAST:event_homeTabMouseClicked
@@ -1092,7 +1061,6 @@ keyswitchTab.setBackground(new Color(128,128,128));
 keycapsTab.setBackground(new Color(128,128,128));
 layoutTab.setBackground(new Color(128,128,128));
 saveTab.setBackground(new Color(128,128,128));
-loadTab.setBackground(new Color(128,128,128));
             
     }//GEN-LAST:event_cartTabMouseClicked
 
@@ -1396,8 +1364,6 @@ String editConfirm = "Confirm Changes?";
     private javax.swing.JPanel layoutPanel;
     private javax.swing.JPanel layoutTab;
     private javax.swing.JLabel layoutText;
-    private javax.swing.JLabel loadLabel;
-    private javax.swing.JPanel loadTab;
     private javax.swing.JLabel saveLabel;
     private javax.swing.JPanel saveTab;
     private javax.swing.JButton updateCartButton;
