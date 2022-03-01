@@ -83,5 +83,48 @@ public class cherrySwitch {
       e.printStackTrace();
     }
    
+        
     }
+    
+    public static void switchLink (String link) throws IOException
+    {
+        System.out.println("switchWOOO");
+        File cherryFile = new File("src\\main\\java\\AppPackage\\switches.txt");
+       if (cherryFile.createNewFile())
+       {System.out.println("File created");}
+       else{System.out.println("File already exists");}
+        //declare file writer
+        FileWriter fw = new FileWriter("src\\main\\java\\AppPackage\\switches.txt");
+        PrintWriter output = new PrintWriter(fw);
+        String repositoryName = "";
+        String repositoryPrice = "";
+        try {
+      // Here we create a document object and use JSoup to fetch the website
+      Document switchDoc = Jsoup.connect(link).get(); //site for cherry switches
+      // With the cherryDocument fetched, we use JSoup's title() method to fetch the title
+      System.out.printf("Title: %s\n", switchDoc.title());
+      // Get the list of repositories
+      Elements repositories = switchDoc.getElementsByClass("product-main");
+      /**
+       * For each repository, extract the following information:
+       * 1. Name
+       * 2. Price
+       */
+      for (Element repository : repositories) {
+        // Extract the title
+         repositoryName = repository.getElementsByClass("product-title").text();
+         repositoryPrice = repository.getElementsByClass("price__current  ").text();
+        //write to file -> split by spaces into array -> keyswitches
+        output.println(repositoryName+"*price*"+repositoryPrice);
+            output.close();
+            fw.close();
+            System.out.println("files written!");
+      }
+    // In case of any IO errors, we want the messages written to the console
+    } catch (IOException e) {
+        System.out.println("ERROR");
+      e.printStackTrace();
+    }
+    }
+
 }

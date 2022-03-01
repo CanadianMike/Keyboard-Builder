@@ -15,7 +15,9 @@ import java.util.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -27,7 +29,7 @@ import javax.swing.JOptionPane;
     public static void initCart () throws IOException  
     {   
         //specify file for creation
-        File cartFile = new File("src\\main\\java\\AppPackage\\cart.txt");
+        File cartFile = new File("src\\main\\Resources\\cart.txt");
        if (cartFile.createNewFile())
        {System.out.println("File created");}
        else{System.out.println("File already exists");}
@@ -46,6 +48,7 @@ import javax.swing.JOptionPane;
         }
         catch (IndexOutOfBoundsException e)
         {
+            JOptionPane.showMessageDialog(null,"Error: incorrect value");
         }
     }
     public String[] displayCart ()
@@ -80,8 +83,7 @@ import javax.swing.JOptionPane;
 //                showInputDialog();
 //            }
             
-            
-            
+      
         }
     return inputValue;
 }
@@ -103,4 +105,5 @@ import javax.swing.JOptionPane;
 //    {
 //        String keycapItem = cartItem;
 //    }
+
 }
