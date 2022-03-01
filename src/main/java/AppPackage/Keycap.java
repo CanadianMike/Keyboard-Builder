@@ -36,7 +36,6 @@ import org.jsoup.select.Elements;
  */
 public class Keycap {
     static void initKeycaps() throws IOException {
-        System.out.println("LINKWOOO");
         File keycapFile = new File("src\\main\\Resources\\keycaps.txt");
        if (keycapFile.createNewFile())
        {System.out.println("File created");}
@@ -50,9 +49,9 @@ public class Keycap {
         String keycapName = "";
         try {
       // Here we create a document object and use JSoup to fetch the website
-      Document switchDoc = Jsoup.connect(link).get(); //site for keycap
+      Document keycapDoc = Jsoup.connect(link).get(); //site for keycap
       // Get the list of repositories
-      Elements repositories = switchDoc.getElementsByClass("product-main");
+      Elements repositories = keycapDoc.getElementsByClass("product-main");
 
       for (Element repository : repositories) {
          repositoryName = repository.getElementsByClass("product-title").text();         
@@ -73,19 +72,12 @@ public class Keycap {
 
     public static void addKeycapLink (String link, String name) throws IOException
     {
-//        System.out.println("LINKWOOO");
-//        File cherryFile = new File("src\\main\\java\\AppPackage\\keycaps.txt");
-//       if (cherryFile.createNewFile())
-//       {System.out.println("File created");}
-//       else{System.out.println("File already exists");}
-        //declare file writer
-//        FileWriter fw = new FileWriter("src\\main\\java\\AppPackage\\keycaps.txt");
-//        PrintWriter outputToKeycaps = new PrintWriter(fw);
+
         String keycapLink = link;
         String keycapName = name;
         //declare file writer for current keycap
-        FileWriter cw = new FileWriter("src\\main\\Resources\\"+keycapName+".txt");
-        PrintWriter addKeycapLink = new PrintWriter(cw);
+        FileWriter kw = new FileWriter("src\\main\\Resources\\"+keycapName+".txt");
+        PrintWriter addKeycapLink = new PrintWriter(kw);
         //declare file writer to main keycap list
         FileWriter fw = new FileWriter("src\\main\\Resources\\keycaps.txt");
         PrintWriter addLinkMain = new PrintWriter(fw);
@@ -95,10 +87,10 @@ public class Keycap {
         
         try {
       // Here we create a document object and use JSoup to fetch the website
-      Document switchDoc = Jsoup.connect(keycapLink).get(); //site for cherry switches
+      Document keycapDoc = Jsoup.connect(keycapLink).get(); //site for cherry switches
 
       // Get the list of repositories
-      Elements repositories = switchDoc.getElementsByClass("product-main");
+      Elements repositories = keycapDoc.getElementsByClass("product-main");
 
       for (Element repository : repositories) {
         // Extract the title and price
@@ -115,13 +107,9 @@ public class Keycap {
          //close scanner/writer
          fw.close();
          addLinkMain.close();        
-         cw.close();
+         kw.close();
          addKeycapLink.close();
 
-          //write name and price to main keycaps file
-//            outputToKeycaps.println(repositoryName+" "+repositoryPrice);
-//            outputToKeycaps.close();
-//            fw.close();
             System.out.println("files written!");
       }
     // In case of any IO errors, we want the messages written to the console
@@ -140,26 +128,6 @@ public class Keycap {
         String getName[] = keycapElement.split(" $");
         String name = getName[0];
         ImageIcon icon = new ImageIcon("src\\main\\Resources\\"+name+".png");
-//        String image = ("src\\main\\java\\Resources\\"+name+".png");
-//        String keycapData[] = new String[10]; 
-//        int indx = 0;
-//        try 
-//        {
-//           File keycapDataFile = new File("src\\main\\java\\Resources\\"+name+".txt");
-//        //declare file scanner
-//        Scanner scanFile = new Scanner(keycapDataFile);
-//        while (scanFile.hasNext()) //attr each element to the next line in the file
-//        {
-//            keycapData[indx] = scanFile.nextLine();  
-//            indx++; 
-//        }
-//        scanFile.close(); 
-//        }
-//        catch (FileNotFoundException ex)
-//        {
-//            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        String keycapLink = keycapData[2];
         return icon;
     }
     
@@ -241,7 +209,7 @@ public class Keycap {
       System.out.println(links);
       for (int i = 0; i<imgLinks.length;i++)
       {
-          System.out.println(imgLinks[i]+"wooo in arr");
+          System.out.println(imgLinks[i]);
       }
         
 //      String linkItem[] = images.toArray(String[]::new);
@@ -305,32 +273,5 @@ out.close();
 in.close();
 }
         
-        //remove prolly
-    public static void linkImage(String keycapName) //indv. files for eah switch? getkeycap name -> link or like all in one file but 
-            //write to switches for name/price and seperate own file link, refer to this file when gettig th image 
-    {
-        
-        String imgLink = "";
-        int maxIndx = 0;
-        String keycapImageData[] = new String [100];
-        try {
-        File keycapDataFile = new File("src\\main\\Resources\\"+keycapName+".txt");
-        //declare file scanner
-        Scanner scanFile = new Scanner(keycapDataFile);
-        while (scanFile.hasNext()) //attr each element to the next line in the file
-        {
-            keycapImageData[maxIndx] = scanFile.nextLine();  
-            maxIndx++; 
-        }
-        scanFile.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        for (int sw = 0 ; sw < maxIndx; sw++)
-        {
-            imgLink = keycapImageData[sw]; //split by name, price etc. 
-        }
-    }
-        
+      
 }

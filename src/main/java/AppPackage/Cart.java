@@ -11,13 +11,7 @@ import java.io.PrintWriter;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.*;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -33,7 +27,26 @@ import javax.swing.ListSelectionModel;
        if (cartFile.createNewFile())
        {System.out.println("File created");}
        else{System.out.println("File already exists");}
-        System.out.println("files written!");  
+    }
+    public void saveCart (String name) throws IOException
+    {
+        String fileName = name;
+        //spcify save file
+        File saveFile = new File("src\\main\\Resources\\"+fileName+".txt");
+        if (saveFile.createNewFile())
+       {JOptionPane.showMessageDialog(null, fileName + " successfully saved");}
+       else{System.out.println("File already exists");}
+        FileWriter fw = new FileWriter("src\\main\\Resources\\"+fileName+".txt");
+        PrintWriter saveConfig = new PrintWriter(fw);
+        String cart[] = cartItems.toArray(String[]::new);
+        System.out.print(cartItems);
+        for (int i = 0; i<cart.length;i++)
+        {
+            saveConfig.println(cart[i]);
+        }
+        fw.close();
+        saveConfig.close();
+        
     }
     public void addCart (String addItem) 
     {
@@ -72,38 +85,11 @@ import javax.swing.ListSelectionModel;
         }
         else 
         {
-//            try 
-//            {
-//            int input = Integer.parseInt(inputValue);
-//            
-//            }
-//            catch (NumberFormatException e)
-//            {
-//                JOptionPane.showMessageDialog(null,"Error: incorrect int value");
-//                showInputDialog();
-//            }
             
       
         }
     return inputValue;
 }
-//    public void editConfirm (String configName)
-//    {
-//       
-//    }
 
-    //change to return string to be used in main cart method in future
-//    static void switchAddCart (String cartItem)
-//    {
-//        String switchItem = cartItem;
-//    }
-//    static void layoutAddCart (String cartItem)
-//    {
-//        String layoutSelection = cartItem;
-//    }
-//    static void keycapAddCart (String cartName)
-//    {
-//        String keycapItem = cartItem;
-//    }
 
 }
